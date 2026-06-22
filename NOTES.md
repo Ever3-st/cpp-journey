@@ -1,8 +1,8 @@
 ## C++ Journey ##
 
 # Day 01
-learned: Program structure,#include, main(),cout,endl, using namespace std,return 0
-confused: Why std:: is needed all the time(solved with using namespace std)
+learned: Program structure,#include, main(),cout,endl, using namespace std,return 0;
+confused: Why std:: is needed all the time(solved with using namespace std);
 revisit: Nothing,all clear!
 
 # Day 02
