@@ -27,3 +27,10 @@ Learned: Conditional statements (if, else if, else)for branching logic, combinin
 Confused: Remembering that C++ requires full expresions on both sides of an OR operator (e.g., `guess ==6 || guess == 8`, not `guess ==6 || 8`).
 
 Revisit: Nested if else statements (putting an if-statement inside another if-statement).
+
+# Day 05
+Learned: Loops (for, while, do-while), using loops to caculate a running total (Sum Calculaor0, and using the modulo operator (%) to check for divisibility in multiple conditions (FizzBuzz0.
+
+Confused: Keeping track of nesting multiple code blocks using curly braces `{}` (boxes inside boxes).
+
+Revisit: The layout of nested loops (loops inside loop0 for Day 6.
