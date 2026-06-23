@@ -22,7 +22,7 @@ Confused: Remembering not to use a single `=` for comparison, and handling multi
 Revisit: Short circuit evalution (how C++ skips checking the second condition if the first one already decided the reults).
 
 # Day 04
-Learned: Conditional statements (if, else if, else)for branching logic, combining conditions inside an if-statement using ||.
+Learned: Conditional statements (if, else if, else)for branching logic, combining conditions inside an if-statement using (||).
 
 Confused: Remembering that C++ requires full expresions on both sides of an OR operator (e.g., `guess ==6 || guess == 8`, not `guess ==6 || 8`).
 
