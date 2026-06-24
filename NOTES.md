@@ -34,3 +34,10 @@ Learned: Loops (for, while, do-while), using loops to caculate a running total (
 Confused: Keeping track of nesting multiple code blocks using curly braces `{}` (boxes inside boxes).
 
 Revisit: The layout of nested loops (loops inside loop0 for Day 6.
+
+# Day 06
+Learned: Nested loops (loops inside loops) and how they step through multi-dimensional structures, and loop control statements (`break` to exit completely and `continue` to skip the current round).
+
+Confused: Visualizing how the inner loop fully resets and repeats every time the outer loop ticks forward by one.
+
+Revisit: Creating more complex patterns (like pyramids or grids) using nested loops.
