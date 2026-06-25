@@ -41,3 +41,10 @@ Learned: Nested loops (loops inside loops) and how they step through multi-dimen
 Confused: Visualizing how the inner loop fully resets and repeats every time the outer loop ticks forward by one.
 
 Revisit: Creating more complex patterns (like pyramids or grids) using nested loops.
+
+# Day 07
+Learned: Designiing modular custom functions with specific return types and parameters to isolate logic and keep `main()` clean.
+
+Deep Dive: Iplemented defensive programming (`if (b == 0)`) to intercept critical hardware-level devision crahes before they happen, and managed data-type precision using `double` to prevent decimal truncation.
+
+Next Step: Exploring functions that execute tasks without returing a value (`void` funcxtions).
