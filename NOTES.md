@@ -71,8 +71,9 @@ Exploring functions that execute tasks without returing a value (`void` funcxtio
 
 # Day 08
 Learned: 
-How to see raw memory addrsses in RAM using th (&) symbol.
-How to use void functions that do an action without returning values.
+1. How to see raw memory addrsses in RAM using th (&) symbol.
+   
+2. How to use void functions that do an action without returning values.
 
 What was confusing but cleared up:
 Why a swap fails without a temp variable because values get overwritten.
@@ -80,4 +81,3 @@ How x and y act as nicknames pointing directly to the original variables a and b
 
 What is useful:
 Pass by reference lets a function change variables in main permanently.
-
