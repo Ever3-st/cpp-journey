@@ -72,7 +72,6 @@ Exploring functions that execute tasks without returing a value (`void` funcxtio
 # Day 08
 Learned: 
 1. How to see raw memory addrsses in RAM using th (&) symbol.
-   
 2. How to use void functions that do an action without returning values.
 
 What was confusing but cleared up:
