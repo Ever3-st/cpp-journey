@@ -71,7 +71,7 @@ Next Step:
 - Exploring functions that execute tasks without returing a value (`void` funcxtions).
 
 # Day 08
-Learned: 
+What I Learned: 
 1. How to see raw memory addrsses in RAM using th (&) symbol.
 2. How to use void functions that do an action without returning values.
 
@@ -83,7 +83,7 @@ What is useful:
 - Pass by reference lets a function change variables in main permanently.
 
 # Day 09
-learned:
+What I Learned:
 1. Pointers are special variables that saves memory address instead of normal data.
 2. The asterisk symbol is used to create a pointer and to change the value at that address.
 
@@ -93,3 +93,15 @@ What was confusing but cleared up:
 
 What is useful:
 - Pointers allow you to access and change data from a distance without making copies.
+
+# Day 10
+What I Learned:
+1. How to pass a raw memory address into a function using pointers.
+2. How to use a pointer parameter (int* p)to accept an address from main.
+
+What was confusing but cleared up:
+1. Remembering that &gold passes the location of variable, not the actual number 50.
+2. How the function uses *p to reach back into main's memory and the value.
+
+What is useful:
+- Pass-by-pointer gives us another way to permanently modiufy variables inside functions.
