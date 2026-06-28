@@ -81,3 +81,15 @@ What was confusing but cleared up:
 
 What is useful:
 - Pass by reference lets a function change variables in main permanently.
+
+# Day 09
+learned:
+1. Pointers are special variables that saves memory address instead of normal data.
+2. The asterisk symbol is used to create a pointer and to change the value at that address.
+
+What was confusing but cleared up:
+1. How ptr is just a variable name but its int* type means it only holds addresses.
+2. The difference beteeen (&) which gets an address and (*) which looks inside that address.
+
+What is useful:
+- Pointers allow you to access and change data from a distance without making copies.
