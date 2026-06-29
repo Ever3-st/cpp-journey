@@ -105,3 +105,15 @@ What was confusing but cleared up:
 
 What is useful:
 - Pass-by-pointer gives us another way to permanently modiufy variables inside functions.
+
+# Day 11
+What I Learned:
+1. Arrays store a row of multiple items together in memory under a single name.
+2. We can make arrays of numbers using int or arrays of words using string.
+
+What was confusing but cleared up:
+1. Remembering that arrays start counting at slot 0 instead of slot 1.
+2. Realizing an int array rejects words because data types must match the array type.
+
+What is useful:
+- Using a for loop lets us read or update every single item in an array automatcally.
