@@ -128,4 +128,4 @@ What was confusing but cleared up:
 2. Realizing that blank spaces aren't empty spaces but are counted as real characters in memory,thats why Elian Solari is 12 charcaters long not 11.
 
 What is useful:
-- Using a `for` loop bounded by `.lengrh()` lets us scan through  a string character by character to automatically find and change specific element,like swapping spaces for hyphens.
+- Using a `for` loop bounded by `.length()` lets us scan through  a string character by character to automatically find and change specific element,like swapping spaces for hyphens.
