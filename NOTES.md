@@ -121,11 +121,11 @@ What is useful:
 # Day 12
 What I Learned:
 1. Strings act like an ordered sequence of characters, where each letter or symbol gets its own index slot starting at 0.
-2. We can use the (+) operator to join different strings together and (.length()) to count how many characters are inside.
+2. We can use the `+` operator to join different strings together and `.length()` to count how many characters are inside.
 
 What was confusing but cleared up:
-1. Seeing that (cin >>) completely stops reading text the momemt it hits a space, which is why we need (getline) to captue the whole sentence.
+1. Seeing that `cin >>` completely stops reading text the momemt it hits a space, which is why we need `getline` to captue the whole sentence.
 2. Realizing that blank spaces aren't empty spaces but are counted as real characters in memory,thats why Elian Solari is 12 charcaters long not 11.
 
 What is useful:
-- Using a (for) loop bounded by (.lengrh()) lets us scan through  a string character by character to automatically find and change specific element,like swapping spaces for hyphens.
+- Using a `for` loop bounded by `.lengrh()` lets us scan through  a string character by character to automatically find and change specific element,like swapping spaces for hyphens.
