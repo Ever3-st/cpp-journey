@@ -36,10 +36,22 @@ bool CoreDumpParser::transitionTo(ParserState newState) {
     return true;
 }
 
-bool CoreDumpParser::loadCoreDump(const std::string& rawLogData) {
-    if (m_currentState == ParserState::HALTED) {
-        return false;
+std::string_view CoreDumpParser::extractHexAddress(std::string_view line) const {
+    size_t pos = line.find("0x");
+    if (pos == std::string_view::npos) {
+        return "NO_HEX_ADDR";
     }
+    
+    size_t endPos = pos + 2;
+    while (endPos < line.size() && std::isxdigit(line[endPos])) {
+        endPos++;
+    }
+    
+    return line.substr(pos, endPos - pos);
+}
+
+bool CoreDumpParser::loadCoreDump(const std::string& rawLogData) {
+    if (m_currentState == ParserState::HALTED) return false;
 
     *m_monolithicBuffer = rawLogData;
     m_workingWindow = *m_monolithicBuffer;
@@ -60,8 +72,8 @@ void CoreDumpParser::runDiagnosticLoop() {
 
     std::string_view streamView = m_workingWindow;
     size_t lineNum = 1;
-
     size_t startPos = 0;
+    
     while (startPos < streamView.size()) {
         size_t endPos = streamView.find('\n', startPos);
         if (endPos == std::string_view::npos) {
@@ -71,10 +83,17 @@ void CoreDumpParser::runDiagnosticLoop() {
         std::string_view currentLine = streamView.substr(startPos, endPos - startPos);
 
         if (currentLine.find("CRITICAL") != std::string_view::npos) {
-            std::cout << "  [LINE " << lineNum << "] Fault detected: " << currentLine << "\n";
+            std::string_view hextoken = extractHexAddress(currentLine);
+            
+            std::cout << "  [LINE " << lineNum << "] Fault detected at Address ["
+                      << hextoken << "]: " << currentLine << "\n";
             transitionTo(ParserState::CRITICAL_EXCEPTION);
+            
         } else if (currentLine.find("FATAL") != std::string_view::npos) {
-            std::cout << "  [LINE " << lineNum << "] Unrecoverable state: " << currentLine << "\n";
+            std::string_view hextoken = extractHexAddress(currentLine);
+            
+            std::cout << "  [LINE " << lineNum << "] Fatal Fault Vector ["
+                      << hextoken << "]: " << currentLine << "\n";
             transitionTo(ParserState::HALTED);
             break;
         }
