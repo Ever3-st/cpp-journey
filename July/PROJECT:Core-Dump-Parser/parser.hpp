@@ -15,12 +15,13 @@ enum class ParserState {
 class CoreDumpParser {
 private:
     ParserState m_currentState;
-    
     std::unique_ptr<std::string> m_monolithicBuffer;
     std::string_view m_workingWindow;
+    
     std::string getStateName(ParserState state) const;
-
     bool transitionTo(ParserState newState);
+    
+    std::string_view extractHexAddress(std::string_view line) const;
 
 public:
     CoreDumpParser();
@@ -30,8 +31,6 @@ public:
     CoreDumpParser& operator=(const CoreDumpParser&) = delete;
 
     bool loadCoreDump(const std::string& rawLogData);
-
     void runDiagnosticLoop();
-
     ParserState getCurrentState() const;
 };
