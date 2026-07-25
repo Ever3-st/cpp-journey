@@ -19,10 +19,9 @@ int main() {
 
     if (parser.loadCoreDump(mockCrashDump)) {
         parser.runDiagnosticLoop();
+        parser.printTelemetryReport();
     }
 
-    std::cout << "========================================================\n";
     std::cout << "[SYSTEM] Terminal execution complete.\n";
-
     return 0;
 }
