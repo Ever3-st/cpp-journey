@@ -5,7 +5,10 @@
 CoreDumpParser::CoreDumpParser() 
     : m_currentState(ParserState::INITIALIZING),
       m_monolithicBuffer(std::make_unique<std::string>()),
-      m_workingWindow() {
+      m_workingWindow(),
+      m_linesScanned(0),
+      m_faultCount(0),
+      m_lastFaultAddress("NONE") {
     std::cout << "[PARSER_INIT] FSM active. Allocated heap buffer wrapper.\n";
 }
 
@@ -71,7 +74,8 @@ void CoreDumpParser::runDiagnosticLoop() {
     std::cout << "[SCAN_START] Beginning zero-copy string_view inspection loop...\n";
 
     std::string_view streamView = m_workingWindow;
-    size_t lineNum = 1;
+    m_linesScanned = 0;
+    m_faultCount = 0;
     size_t startPos = 0;
     
     while (startPos < streamView.size()) {
@@ -81,28 +85,43 @@ void CoreDumpParser::runDiagnosticLoop() {
         }
 
         std::string_view currentLine = streamView.substr(startPos, endPos - startPos);
-
+        m_linesScanned++;
+        
         if (currentLine.find("CRITICAL") != std::string_view::npos) {
-            std::string_view hextoken = extractHexAddress(currentLine);
+            std::string_view hexToken = extractHexAddress(currentLine);
+            m_faultCount++;
+            m_lastFaultAddress = hexToken;
             
-            std::cout << "  [LINE " << lineNum << "] Fault detected at Address ["
-                      << hextoken << "]: " << currentLine << "\n";
+            std::cout << "  [LINE " << m_linesScanned << "] Fault detected at Address ["
+                      << hexToken << "]: " << currentLine << "\n";
             transitionTo(ParserState::CRITICAL_EXCEPTION);
             
         } else if (currentLine.find("FATAL") != std::string_view::npos) {
-            std::string_view hextoken = extractHexAddress(currentLine);
+            std::string_view hexToken = extractHexAddress(currentLine);
+            m_faultCount++;
+            m_lastFaultAddress = hexToken;
             
-            std::cout << "  [LINE " << lineNum << "] Fatal Fault Vector ["
-                      << hextoken << "]: " << currentLine << "\n";
+            std::cout << "  [LINE " << m_linesScanned << "] Fatal Fault Vector ["
+                      << hexToken << "]: " << currentLine << "\n";
             transitionTo(ParserState::HALTED);
             break;
         }
 
         startPos = endPos + 1;
-        lineNum++;
     }
 
     std::cout << "[SCAN_COMPLETE] Final FSM State: " << getStateName(m_currentState) << "\n";
+}
+
+void CoreDumpParser::printTelemetryReport() const {
+    std::cout << "\n========================================================\n";
+    std::cout << "               PARSER TELEMETRY SUMMARY                 \n";
+    std::cout << "========================================================\n";
+    std::cout << "  * Total Lines Scanned : " << m_linesScanned << "\n";
+    std::cout << "  * Total Faults Found  : " << m_faultCount << "\n";
+    std::cout << "  * Last Fault Address  : " << m_lastFaultAddress << "\n";
+    std::cout << "  * Final FSM Engine    : " << getStateName(m_currentState) << "\n";
+    std::cout << "========================================================\n\n";
 }
 
 ParserState CoreDumpParser::getCurrentState() const {
