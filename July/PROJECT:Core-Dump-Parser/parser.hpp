@@ -18,6 +18,10 @@ private:
     std::unique_ptr<std::string> m_monolithicBuffer;
     std::string_view m_workingWindow;
     
+    size_t m_linesScanned;
+    size_t m_faultCount;
+    std::string_view m_lastFaultAddress;
+    
     std::string getStateName(ParserState state) const;
     bool transitionTo(ParserState newState);
     
@@ -32,5 +36,7 @@ public:
 
     bool loadCoreDump(const std::string& rawLogData);
     void runDiagnosticLoop();
+    
+    void printTelemetryReport() const;
     ParserState getCurrentState() const;
 };
